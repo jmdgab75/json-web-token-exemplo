@@ -38,11 +38,18 @@ app.get('/', async function(req, res){
 
 app.post('/logar', (req, res) => {
   if(req.body.usuario == 'gabriel' && req.body.senha == '1234' ){
-     res.send("login certo")
+     const id = 1;
+     const token = jwt.sign({ id }, process.env.SECRET, {
+      expiresIn: 300
+     })
+
+     res.cookie('token', token, {httpOnly: true});
+     return res.json({
+      usuario: req.body.usuario,
+       token: token
+     })
      }
-   else{
-    res.send("login errado")
-   }
+   res.status(500).json({mensagem: "Login errado"})
 })
 
 app.post('/deslogar', function(req, res) {
