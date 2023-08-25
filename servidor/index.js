@@ -33,12 +33,27 @@ app.get('/autenticar', async function(req, res){
 })
 
 app.get('/usuarios/cadastrar', async function(req, res){
-  res.render('cadastrar');
+  res.render('usuarios/cadastrar');
 })
 
 app.get('/', async function(req, res){
   res.render("home")
 })
+
+app.post('/usuarios/cadastrar', async function(req, res){
+  if(req.body.senha === req.body.csenha)
+  res.json({mensagem: "Cadastro realizado!"})
+else(
+  res.json({mensagem: "Senhas não são iguais!"})
+ )
+});
+
+
+app.get('/usuarios/listar', async function(req, res){
+ res.json('usuarios')
+})
+
+
 
 app.post('/logar', (req, res) => {
   if(req.body.usuario == 'gabriel' && req.body.senha == '1234' ){
