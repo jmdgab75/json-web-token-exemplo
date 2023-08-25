@@ -32,49 +32,55 @@ app.get('/autenticar', async function(req, res){
   res.render('autenticar');
 })
 
-app.get('/usuarios/cadastrar', async function(req, res){
-  res.render('usuarios/cadastrar');
-})
-
 app.get('/', async function(req, res){
   res.render("home")
 })
 
-app.post('/usuarios/cadastrar', async function(req, res){
-  if(req.body.senha === req.body.csenha)
-  res.json({mensagem: "Cadastro realizado!"})
-else(
-  res.json({mensagem: "Senhas não são iguais!"})
- )
-});
-
-
-app.get('/usuarios/listar', async function(req, res){
- res.json('usuarios')
+app.get('/usuarios/cadastrar', async function(req, res){
+  res.render('usuarios/cadastrar')
 })
 
 
+app.post('/usuarios/cadastrar', async function(req, res){
+  try {
+    if(req.body.senha == req.body.csenha){
+      await usuario.create(req.body);
+      res.redirect('/usuarios/listar')
+    }
+} catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'As senhas não são iguais!✧' });
+}
+})
+
+app.get('/usuarios/listar', async function(req, res){
+ try {
+  var usuarios = await usuario.findAll();
+  res.render('home', { usuarios });
+} catch (err) {
+  console.error(err);
+  res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
+}
+})
 
 app.post('/logar', (req, res) => {
-  if(req.body.usuario == 'gabriel' && req.body.senha == '1234' ){
-     const id = 1;
-     const token = jwt.sign({ id }, process.env.SECRET, {
+  if(req.body.usuario == 'gabriel' && req.body.senha == '123') {
+    const id = 1;
+    const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 300
-     })
-
-     res.cookie('token', token, {httpOnly: true});
-     return res.json({
+    })
+    res.cookie('token', token, {httpOnly:true});
+    return res.json({
       usuario: req.body.usuario,
-       token: token
-     })
-     }
-   res.status(500).json({mensagem: "Login errado"})
+      token: token
+    })
+  }
+    res.status(500).json({mensagem: "Login inválido!"})
 })
 
 app.post('/deslogar', function(req, res) {
-  res.cookie('token', null, {httpOnly: true});
-  return res.json
-  
+  res.cookie('token', null, {httpOnly:true});
+  res.json({deslogar:true})
 })
 
 app.listen(3000, function() {
