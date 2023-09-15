@@ -1,10 +1,14 @@
 // JWT
 require("dotenv-safe").config();
+const crypto = require('./crypto');
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
 
 var cookieParser = require('cookie-parser')
+
+const CHAVE = 'bf3c199c2470cb477d907b1e0917c17e';
+const IV = '5183666c72eec9e4';
 
 const express = require('express');
 const { usuario } = require('./models');
@@ -42,21 +46,26 @@ app.get('/usuarios/cadastrar', async function(req, res){
 
 
 app.post('/usuarios/cadastrar', async function(req, res){
-  try {
+  try { 
+ const criptografia = {
+   nome: req.body.name,
+   senha: crypto.encrypt(req.body.senha)
+}
     if(req.body.senha == req.body.csenha){
-      await usuario.create(req.body);
+      const bd = await usuario.create(criptografia);
+     
       res.redirect('/usuarios/listar')
     }
 } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'As senhas não são iguais!✧' });
+    res.status(500).json({ message: 'As senhas são diferentes!' });
 }
 })
 
 app.get('/usuarios/listar', async function(req, res){
  try {
-  var usuarios = await usuario.findAll();
-  res.render('home', { usuarios });
+  var bd = await usuario.findAll();
+  res.render('home', { bd });
 } catch (err) {
   console.error(err);
   res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });

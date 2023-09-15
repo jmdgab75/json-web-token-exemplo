@@ -1,12 +1,14 @@
-/* CSS reset */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
 *, *:before, *:after { 
   margin:0;
   padding:0;
-  font-family: Arial,sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body{
   margin:10px;
+  background-color: #e0ddd7;
 }
 
 a{
@@ -28,7 +30,7 @@ a.links{
 /* formatando o cabeçalho dos formulários */
 h1{
   font-size: 48px;
-  color: #066a75;
+  color: #1a1713;
   padding: 10px 0;
   font-family: Arial,sans-serif;
   font-weight: bold;
@@ -52,7 +54,7 @@ p:first-child{
   margin: 0px;
 }
 label{
-  color: #405c60;
+  color: #1a1713;
   position: relative;
 }
 
@@ -105,7 +107,7 @@ input[type="submit"]{
   transition: all 0.2s linear;
 }
 input[type="submit"]:hover{
-  background: #4ab3c6;
+  background: #1a1713;
 }
 
 /*marcando os links para mudar de um formulário para outro */

@@ -7,9 +7,9 @@
   <title>Document</title>
 </head>
 <body>
-  <% usuarios.forEach((usuario) => { %>
-    <%= usuario.nome %>
-    <%= usuario.senha %>
+  <% bd.forEach((usuario) => { %>
+    <h2><%= usuario.nome %></h2>
+    <h3><%= usuario.senha %></h3>
 <% }) %>
   <form action="/deslogar" method="post">
     <input type="submit" value="Deslogar">
