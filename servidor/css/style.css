@@ -1,9 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700&family=Open+Sans:wght@600&display=swap');
-
-
 body {
-  font-family: 'DM Sans', sans-serif;
-  background-color:#D6C8AE ;
+  background-color: #281E19;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,8 +8,8 @@ body {
 }
 
 .card {
-  background-color:#D6C8AE ;
-  padding: 50px;
+  background-color: #D6C8AE;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   width: 300px;

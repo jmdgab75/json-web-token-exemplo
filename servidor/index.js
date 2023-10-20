@@ -48,7 +48,7 @@ app.get('/usuarios/cadastrar', async function(req, res){
 app.post('/usuarios/cadastrar', async function(req, res){
   try { 
  const criptografia = {
-   nome: req.body.name,
+   nome: req.body.nome,
    senha: crypto.encrypt(req.body.senha)
 }
     if(req.body.senha == req.body.csenha){
