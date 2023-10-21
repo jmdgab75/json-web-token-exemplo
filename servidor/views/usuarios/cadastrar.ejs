@@ -1,41 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
-  <title>Autenticação</title>
-</head>
-<body>
-  <div class="container" >
-    <a class="links" id="paracadastro"></a>
-    <a class="links" id="paralogin"></a>
-     
-    <div class="content">      
-      <div id="login">
-        <form method="post" action="/usuarios/cadastrar"> 
-          <h1>Cadastro</h1> 
-          <p> 
-            <label for="nome_login">Usuário:</label>
-            <input id="nome_login" name="nome" required="required" type="text"/>
-          </p>
-           
-          <p> 
-            <label for="email_login">Senha:</label>
-            <input id="email_login" name="senha" required="required" type="password"/> 
-          </p>
-          <p> 
-            <label for="email_login">Confirmar a Senha:</label>
-            <input id="email_login" name="csenha" required="required" type="password"/> 
-          </p>
-  
-          <p> 
-            <input type="submit" value="Cadastrar" name="cadastrar" /> 
-          </p>
-        </form>
-      </div>      
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <!-- <link rel="stylesheet" href="/css/style_cadas.css"/> -->
+  </head>
+  <body>  
+    <form method="post" action="/usuarios/cadastrar" class="sign-up-form">
+      <div class="logo">
+        <img src="/img/logo.png" alt="" />
+        <h4>Gabriel Diniz</h4>
+      </div>
+
+      <div class="heading">
+        <h2>Crie sua conta</h2>
+        <h6>Já é cadastrado?</h6>
+        <a href="/logar" class="toggle">Log in</a>
+      </div>
+
+      <div class="actual-form">
+        <div class="input-wrap">
+          <input name="nome" class="input-field" required="required" type="text"/>
+          <label>Usuário</label>
+        </div>
+
+        <div class="input-wrap">
+          <input name="senha" class="input-field" required="required" type="password"/> 
+          <label>Senha</label>
+        </div>
+
+        <div class="input-wrap">
+          <input id="email_login" name="csenha"  class="input-field" required="required" type="password"/> 
+          <label>Confirmar a Senha</label>
+        </div>
+
+        <input type="submit" value="Sign Up" class="sign-btn" />
+
+        <p class="text">
+          By signing up, I agree to the
+          <a href="#">Terms of Services</a> and
+          <a href="#">Privacy Policy</a>
+        </p>
+      </div>
+    </form>
+<!-- 
+  <div class="carousel">
+    <div class="images-wrapper">
+      <img src="/img/image1.png" class="image img-1 show" alt="" />
+      <img src="/img/image2.png" class="image img-2" alt="" />
+      <img src="/img/image3.png" class="image img-3" alt="" />
     </div>
-  </div>  
+
+    <div class="text-slider">
+      <div class="text-wrap">
+        <div class="text-group">
+          <h2>Create your own courses</h2>
+          <h2>Customize as you like</h2>
+          <h2>Invite students to your class</h2>
+        </div>
+      </div>
+
+      <div class="bullets">
+        <span class="active" data-value="1"></span>
+        <span data-value="2"></span>
+        <span data-value="3"></span>
+      </div>
+    </div>
+  </div> -->
+</div>
+</div>
+<script src="/js/app.js"></script>
 </body>
 </html>

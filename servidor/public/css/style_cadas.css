@@ -13,47 +13,6 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
-main {
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: #7a9484;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box {
-  position: relative;
-  width: 100%;
-  max-width: 1020px;
-  height: 640px;
-  background-color: #fff;
-  border-radius: 3.3rem;
-  box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
-}
-
-.inner-box {
-  position: absolute;
-  width: calc(100% - 4.1rem);
-  height: calc(100% - 4.1rem);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.forms-wrap {
-  position: absolute;
-  height: 100%;
-  width: 45%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  transition: 0.8s ease-in-out;
-}
 
 form {
   max-width: 260px;
@@ -112,7 +71,7 @@ form.sign-up-form {
 }
 
 .toggle:hover {
-  color: #7a9484;
+  color: #7a9484;;
 }
 
 .input-wrap {
@@ -184,25 +143,7 @@ label {
 }
 
 .text a:hover {
-  color: #8371fd;
-}
-
-main.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  pointer-events: none;
-}
-
-main.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  pointer-events: all;
-}
-
-main.sign-up-mode .forms-wrap {
-  left: 55%;
-}
-
-main.sign-up-mode .carousel {
-  left: 0%;
+  color: #7a9484;
 }
 
 .carousel {
@@ -300,7 +241,7 @@ main.sign-up-mode .carousel {
   background-color: #151111;
   border-radius: 1rem;
 }
-/* 
+
 @media (max-width: 850px) {
   .box {
     height: auto;
@@ -390,4 +331,4 @@ main.sign-up-mode .carousel {
   form {
     padding: 1rem 2rem 1.5rem;
   }
-} */
+}
