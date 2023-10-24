@@ -17,7 +17,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #7a9484;
+  background-color: #ff8c6b;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -39,33 +39,34 @@ main {
   width: calc(100% - 4.1rem);
   height: calc(100% - 4.1rem);
   top: 50%;
-  left: 9%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
- .forms-wrap {
+.forms-wrap {
   position: absolute;
   height: 100%;
   width: 45%;
   top: 0;
-  left: 90;
+  left: 0;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  
-} 
+  transition: 0.8s ease-in-out;
+}
 
 form {
   max-width: 260px;
   width: 100%;
-  /* margin: 0 auto; */
+  margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   grid-column: 1 / 2;
   grid-row: 1 / 2;
-} 
+  transition: opacity 0.02s 0.4s;
+}
 
 form.sign-up-form {
   opacity: 0;
@@ -101,7 +102,7 @@ form.sign-up-form {
   font-size: 0.75rem;
   display: inline;
 }
-/* 
+
 .toggle {
   color: #151111;
   text-decoration: none;
@@ -110,8 +111,8 @@ form.sign-up-form {
   transition: 0.3s;
 }
 
- .toggle:hover {
-  color: #7a9484;
+.toggle:hover {
+  color: #8371fd;
 }
 
 .input-wrap {
@@ -169,8 +170,8 @@ label {
 }
 
 .sign-btn:hover {
-  background-color: #7a9484;
-} */
+  background-color: #8371fd;
+}
 
 .text {
   color: #bbb;
@@ -210,7 +211,7 @@ main.sign-up-mode .carousel {
   width: 55%;
   left: 45%;
   top: 0;
-  background-color: #ddede3;
+  background-color: #ffe0d2;
   border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -299,7 +300,7 @@ main.sign-up-mode .carousel {
   background-color: #151111;
   border-radius: 1rem;
 }
-/* 
+
 @media (max-width: 850px) {
   .box {
     height: auto;
@@ -389,4 +390,4 @@ main.sign-up-mode .carousel {
   form {
     padding: 1rem 2rem 1.5rem;
   }
-} */
+}

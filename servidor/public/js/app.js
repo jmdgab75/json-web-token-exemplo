@@ -38,19 +38,32 @@ bullets.forEach((bullet) => {
   bullet.addEventListener("click", moveSlider);
 });
 
+let currentSlide = 1;
 
-  // Função para alternar para a próxima imagem
-  function nextImage() {
+function showSlide(slideNumber) {
+    // Esconda todas as imagens e os textos
     const images = document.querySelectorAll('.image');
-    const visibleImage = document.querySelector('.show');
-    let nextIndex = (Array.from(images).indexOf(visibleImage) + 1) % images.length;
+    const textItems = document.querySelectorAll('.text-group h2');
+    
+    images.forEach(image => image.classList.remove('show'));
+    textItems.forEach(item => item.style.display = 'none');
 
-    // Esconda a imagem atual
-    visibleImage.classList.remove('show');
+    // Mostre o slide desejado
+    images[slideNumber - 1].classList.add('show');
+    textItems[slideNumber - 1].style.display = 'block';
+}
 
-    // Mostre a próxima imagem
-    images[nextIndex].classList.add('show');
-  }
+function nextSlide() {
+    currentSlide = (currentSlide % 3) + 1; // Circula entre 1, 2 e 3
+    showSlide(currentSlide);
+}
 
-  // Inicie o carrossel automaticamente a cada 4 segundos
-  setInterval(nextImage, 4000);
+// Inicie o carrossel
+showSlide(currentSlide);
+setInterval(nextSlide, 4000); // Mude para o próximo slide a cada 4 segundos
+
+
+
+
+
+
