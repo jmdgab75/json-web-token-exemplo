@@ -72,19 +72,35 @@ app.get('/usuarios/listar', async function(req, res){
 }
 })
 
-app.post('/logar', (req, res) => {
-  if(req.body.usuario == 'gabriel' && req.body.senha == '123') {
+// app.post('/logar', (req, res) => {
+//   if(req.body.nome == 'gabriel' && req.body.senha == '123') {
+//     const id = 1;
+//     const token = jwt.sign({ id }, process.env.SECRET, {
+//       expiresIn: 300
+//     })
+//     res.cookie('token', token, {httpOnly:true});
+//     return res.json({
+//       usuario: req.body.nome,
+//       token: token
+//     })
+//   }
+//     res.status(500).json({mensagem: "Login inválido!"})
+// })
+
+app.post('/logar', async (req, res) => {
+  const u = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
+  if(u) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
-      expiresIn: 300
+      expiresIn: 3000
     })
     res.cookie('token', token, {httpOnly:true});
     return res.json({
-      usuario: req.body.usuario,
+      usuario: req.body.nome,
       token: token
     })
   }
-    res.status(500).json({mensagem: "Login inválido!"})
+    res.status(500).json({mensagem: "Login inválido!(˶˃ᆺ˂˶)"})
 })
 
 app.post('/deslogar', function(req, res) {
