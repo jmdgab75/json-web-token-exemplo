@@ -4,6 +4,17 @@ const crypto = require('./crypto');
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
+const corsOpcoes = {
+  origin: "http://localhost:3000",
+  //metodos que o cliente pode executar
+  methods: "GET,PUT,POST,DELETE", 
+
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true
+}
+
+
+
 
 var cookieParser = require('cookie-parser')
 
@@ -18,6 +29,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(cors());
+app.use(cors(corsOpcoes))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -65,7 +77,7 @@ app.post('/usuarios/cadastrar', async function(req, res){
 app.get('/usuarios/listar', async function(req, res){
  try {
   var bd = await usuario.findAll();
-  res.render('home', { bd });
+  res.json(bd);
 } catch (err) {
   console.error(err);
   res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
@@ -79,11 +91,14 @@ app.post('/logar', async (req, res) => {
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
     })
-    res.cookie('token', token, {httpOnly:true});
-    return res.json({
-      usuario: req.body.nome,
+    res.cookie('token', token, {httpOnly:true}).json({
+      nome: comparar.usuario,
       token: token
     })
+   /*/ return res.json({
+      usuario: req.body.nome,
+      token: token
+    }) /*/
   }
     res.status(500).json({mensagem: "Nome ou senha inválidos"})
 })

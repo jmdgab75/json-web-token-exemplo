@@ -1,0 +1,35 @@
+.barra {
+  background-color: #90735C; 
+  color: #F3F5F9; 
+  width: 150px; 
+  height: 100%; 
+  position: fixed;
+  top: 0; 
+  left: 0; 
+  padding: 20px; 
+}
+
+.barra h1 {
+  font-size: 1.5rem; 
+  margin-bottom: 20px; 
+}
+
+.barra ul {
+  list-style: none; 
+  padding: 0;
+  margin: 0;
+}
+
+.barra ul li {
+  margin-bottom: 10px; 
+}
+
+.barra ul li a {
+  text-decoration: none; 
+  color: #F3F5F9;; 
+  font-size: 1.2rem; 
+}
+
+.barra ul li a.active {
+  font-weight: bold;
+}
