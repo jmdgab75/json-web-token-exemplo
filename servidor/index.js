@@ -8,13 +8,9 @@ const corsOpcoes = {
   origin: "http://localhost:3000",
   //metodos que o cliente pode executar
   methods: "GET,PUT,POST,DELETE", 
-
   allowedHeaders: "Content-Type,Authorization",
   credentials: true
 }
-
-
-
 
 var cookieParser = require('cookie-parser')
 
@@ -85,7 +81,7 @@ app.get('/usuarios/listar', async function(req, res){
 })
 
 app.post('/logar', async (req, res) => {
-  const comparar = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
+  const comparar = await usuario.findOne({ where: { nome: req.body.name, senha: crypto.encrypt(req.body.password) } });
   if(comparar) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
@@ -95,10 +91,6 @@ app.post('/logar', async (req, res) => {
       nome: comparar.usuario,
       token: token
     })
-   /*/ return res.json({
-      usuario: req.body.nome,
-      token: token
-    }) /*/
   }
     res.status(500).json({mensagem: "Nome ou senha inválidos"})
 })
@@ -108,6 +100,6 @@ app.post('/deslogar', function(req, res) {
   res.json({deslogar:true})
 })
 
-app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+app.listen(3001, function() {
+  console.log('App de Exemplo escutando na porta 3001!')
 });

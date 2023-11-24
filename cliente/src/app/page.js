@@ -22,7 +22,7 @@ export default function Login() {
       }
       push('/pages/dashboard');
     } catch {
-      toast.error("Erro na aplicação");
+      refresh();
     }
   }
 
@@ -33,6 +33,7 @@ export default function Login() {
         <input
           placeholder='E-mail'
           type="email"
+          name=""
           onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
         </input>
         <input
