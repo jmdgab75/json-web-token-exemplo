@@ -5,7 +5,7 @@ export default async function ListUser({users}){
     <div>
         {users?.map((user, index) =>
                <p key={index}> 
-                 {user.name}       
+                 {user.nome}       
                </p> 
         )}
     </div>

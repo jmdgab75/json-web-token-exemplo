@@ -81,13 +81,13 @@ app.get('/usuarios/listar', async function(req, res){
 })
 
 app.post('/logar', async (req, res) => {
-  const comparar = await usuario.findOne({ where: { nome: req.body.name, senha: crypto.encrypt(req.body.password) } });
+  const comparar = await usuario.findOne({ where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) } });
   if(comparar) {
     const id = 1;
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 3000
     })
-    res.cookie('token', token, {httpOnly:true}).json({
+    return res.cookie('token', token, {httpOnly:true}).json({
       nome: comparar.usuario,
       token: token
     })

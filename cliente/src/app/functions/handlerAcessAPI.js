@@ -1,10 +1,13 @@
 'use server'
 
+import { cookies } from "next/dist/client/components/headers";
 
-const url = "https://aula-17-10-marcelino-trabalho.vercel.app";
+
+const url = "http://localhost:3001";
 
 const getUserAuthenticated = async (user) => {
-   const responseOfApi = await fetch(url + "/users/authenticaded",
+  console.log(user);
+   const responseOfApi = await fetch(url + "/logar",
      {
       method:"POST",
       headers:{ "Content-Type":"Application/json" },
@@ -19,7 +22,7 @@ const getUserAuthenticated = async (user) => {
 
 const postUser = async (user) => {
   try{
-    const responseOfApi = await fetch(url + "/user", {
+    const responseOfApi = await fetch(url + "/usuarios/cadastrar", {
       method:'POST',
       headers:{ "Content-Type":"Application/json" },
       body: JSON.stringify(user)
@@ -32,10 +35,11 @@ const postUser = async (user) => {
 }
 
 const getUsers = async () =>{
+  const token = cookies().get('token')?.value;
     try{
-      const responseOfApi = await fetch(url + "/users", {
-           next: { revalidate: 5}
-
+      const responseOfApi = await fetch(url + "/usuarios/listar", {
+           next: { revalidate: 5},
+           headers:{ "Content-Type":"Application/json", Cookie: `token=${token}` },
       });
 
       const listUser = responseOfApi.json();

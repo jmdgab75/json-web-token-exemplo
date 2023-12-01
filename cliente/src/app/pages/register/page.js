@@ -5,18 +5,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import SideBar from "@/app/functions/componentes/SideBar";
 import "./styles.css";
 import { useState } from "react";
+import { postUser } from "@/app/functions/handlerAcessAPI";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
    const [user, setUser] = useState({
-     name: '',
-     email: '',
-     password:'',
+     nome: '',
+     senha: '',
+     csenha:'',
    });
-const { push } = useState();
+const { push } = useRouter();
 const handlerFormSubmit = async (event) => {
   event.preventDefault();
   try{
-   await postUser(registro);
+   await postUser(user);
    push('/pages/dashboard');
   } catch {
     return toast.error('Error')
@@ -39,13 +41,13 @@ return(
       <h1>Cadastrar usuário</h1>
       <form onSubmit={handlerFormSubmit}>
       <input
-        type="text" placeholder="Nome" id="name"  onChange={(e) => { setUser({ ...user, name: e.target.value });}} 
+        type="text" placeholder="Nome" id="nome" value={user.nome} onChange={(e) => { setUser({ ...user, nome: e.target.value });}} 
         required/>
       <input
-        type="email" placeholder="E-mail" id="email" onChange={(e) => { setUser({ ...user, email: e.target.value });}} 
+        type="password" placeholder="Senha" id="senha" value={user.senha}onChange={(e) => { setUser({ ...user, senha: e.target.value });}} 
         required/>
         <input
-         type="password" placeholder="Senha" id="password" onChange={(e) => { setUser({ ...user, password: e.target.value });}} 
+         type="password" placeholder="Confirmar Senha" id="csenha" value={user.csenha} onChange={(e) => { setUser({ ...user, csenha: e.target.value });}} 
          required/>
         <button>Cadastrar</button>
       </form>
